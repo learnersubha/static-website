@@ -28,8 +28,26 @@
 			"Action": "s3:GetObject",
 			"Resource": "arn:aws:s3:::S3 bucket name/*"
 		}
+   
 	]
 }
    -----> click on save chjange 
    --> again click on your bucket --> properties --> static website hosting --> you get a website endpoint --> copy that and check on your browser.
+
+   Step-5 : **Now its time to setup Route53**
+     === -----> For setup route53 you must need a domain. 
+          --> Go to route53 and open it. Now if you buy domain from aws route53 you got hosted zone other wise if you buy a domain from hostinger or godaddy you need to create a hosted zone. --> click on hosted zone in the above left side of your screen --> click on create hosted zone and give your domain name and keep type public hosted zone and click on create hosted zone.
+   Step-6 : **Create Route53 record**
+     --> Make sure your S3 bucket name and your domain name is same. because S3 Static Website Hosting Directly Uses the Bucket Name as the Website Endpoint. If bucket name does not match with the domain it would not work directly with static website hosting, At that time you need CloudFront whick can point to any bucket.
+     ---> Record Name: You can use www or you can keep it blank
+          Record type: A Routes traffic to an IPv4 address and some aws resources
+	  Alias : Yes
+          Route traffic to : alias to S3 website endpoint
+	  Region : Choose your region 
+          alias target : 	s3-website-eu-west-1.amazonaws.com
+	  Routing policy : Simple
+          Evaluate target health : No
+
+   Now create the record and go to any browser and check with your domain.
+  
     
